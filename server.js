@@ -7,17 +7,19 @@ const htmlRouter = require('./routes/htmlRoutes.js');
 const apiRouter = require('./routes/apiRoutes.js');
 const mongoose = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const path = require('path');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(express.static('public'));
+app.use('/', htmlRouter);
+app.use('/api', apiRouter);
 
 app.engine("handlebars", exphbs({
     defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
-
-app.use('/', htmlRouter);
-app.use('/api', apiRouter);
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);

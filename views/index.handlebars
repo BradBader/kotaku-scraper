@@ -13,6 +13,9 @@
       <li class="nav-item">
         <a class="nav-link text-light" href="/pinned">Pinned Articles</a>
       </li>
+      <li class="nav-item">
+        <button class="btn btn-success scrape" data-toggle="modal" data-target="#scrapeModal">Scrape Kotaku!</button>
+      </li>
       
     </ul>
     
@@ -30,5 +33,25 @@
         </div>
     </div>
 {{/each}}
+
+<!-- Modal -->
+<div class="modal fade" id="scrapeModal" tabindex="-1" role="dialog" aria-labelledby="scrapeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="scrapeModalLabel">Scrape results:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Things go here.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>

@@ -1,0 +1,9 @@
+button.scrape:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+button.scrape:focus {
+    background-color: #28a745;
+    border-color: #28a745;
+}
