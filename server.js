@@ -22,7 +22,8 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI)
+.catch(err => console.log(err));
 
 app.listen(PORT, function() {
     console.log("App running on http://localhost:" + PORT);

@@ -38,8 +38,8 @@ router.get('/scrape', (req, res)=>{
                 link: link
             });
         });
-        db.Article.insertMany(results, {ordered: false, rawResult: false}, (err, docs) => {
-            res.json({errors: err, result: docs});
+        db.Article.insertMany(results.reverse(), {ordered: false, rawResult: false}, (err, docs) => {
+            res.json({errors: err, results: docs});
         });
     });
 });
