@@ -10,6 +10,10 @@ const articleSchema = new Schema({
         type: String,
         unique: true
     },
+    pinned: {
+        type: Boolean,
+        default: false
+    },
     comments: [
         {
             type: Schema.Types.ObjectId,

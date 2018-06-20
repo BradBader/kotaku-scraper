@@ -44,4 +44,32 @@ router.get('/scrape', (req, res)=>{
     });
 });
 
+router.get('/', (req, res) => {
+    db.Article.find()
+    .populate('comments')
+    .sort({_id: -1})
+    .then( (results) => {
+        //res.json(results);
+        res.json( {results: results} );
+    })
+    .catch( (err) => res.json(err) );
+});
+
+router.post('/commentOn/:articleId', (req, res) => {
+    let articleId = req.params.articleId;
+    db.Comment.create(req.body)
+    .then(newComment => {
+        return db.Article.findOneAndUpdate({_id: articleId}, {$push: {comments: newComment._id} }, {new: true});
+    })
+    .then(updatedArticle => res.json(updatedArticle))
+    .catch(err => res.json(err));
+});
+
+router.post('/pins/:articleId', (req, res) => {
+    let articleId = req.params.articleId;
+    db.Article.findOneAndUpdate({_id: articleId}, { $set: {pinned: req.body.pin} }, {new: true})
+    .then(updatedArticle => res.json(updatedArticle))
+    .catch(err => res.json(err));
+});
+
 module.exports = router;

@@ -20,3 +20,27 @@ $('.scrape').click(()=>{
         })
     })
 });
+
+$(".replyBtn").click( e => {
+    e.preventDefault();
+    let articleId = $(e.target).attr("data-articleId");
+    let author = $("#authorField-" + articleId).val().trim();
+    let body = $("#commentField-" + articleId).val().trim();
+    let data = {body: body};
+    if (author.length > 0) data.author = author;
+    $.post('/api/commentOn/' + articleId, data, resp => {
+        location.reload();
+    });
+});
+
+$(".pin").click( e => {
+    let pinned = $(e.target).attr('data-pinned');
+    let newPin;
+    pinned === "true" ? newPin = false : newPin = true;
+    let articleId = $(e.target).attr('data-articleId');
+    console.log("id: ", articleId )
+    $.post('/api/pins/' + articleId, {pin: newPin}, resp => {
+        //console.log(resp)
+        location.reload();
+    });
+});
