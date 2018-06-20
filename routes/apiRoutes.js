@@ -25,18 +25,17 @@ router.get('/scrape', (req, res)=>{
         });
         */
         $('article').each((index, element)=>{
-            let title;
+            let data = {};
             $('a.js_entry-link', element).each((index2, element2)=>{
-                if(index2 == 0) title = $(element2).text();
+                if(index2 == 0) data.title = $(element2).text();
             });
-            if(title.length == 0) {
-                title = $('p', element).text();
+            if(data.title.length == 0) {
+                data.title = $('p', element).text();
+            } else {
+                data.desc = $('p', element).text();                
             }
-            let link = $('a.js_entry-link', element).attr("href");
-            results.push({
-                title: title,
-                link: link
-            });
+            data.link = $('a.js_entry-link', element).attr("href");
+            results.push(data);
         });
         db.Article.insertMany(results.reverse(), {ordered: false, rawResult: false}, (err, docs) => {
             res.json({errors: err, results: docs});

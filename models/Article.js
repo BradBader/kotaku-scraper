@@ -10,6 +10,10 @@ const articleSchema = new Schema({
         type: String,
         unique: true
     },
+    desc: {
+        type: String,
+        default: "No Description Available"
+    },
     pinned: {
         type: Boolean,
         default: false
