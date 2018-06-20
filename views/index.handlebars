@@ -51,7 +51,7 @@
           {{/unless}}
           {{#if pinned}}
             <button class="btn btn-dark mx-1 pin" data-pinned="true" data-articleId="{{_id}}">
-              <i class="fas fa-times text-light" data-articleId="{{_id}}"></i>
+              <i class="fas fa-times text-light" data-pinned="true" data-articleId="{{_id}}"></i>
             </button>
           {{/if}}
           <button class="btn btn-dark mx-1" type="button" data-toggle="collapse" data-target="#commentDrawer-{{_id}}" aria-expanded="false" aria-controls="commentDrawer-{{_id}}">
